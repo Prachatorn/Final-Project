@@ -1,9 +1,7 @@
 ﻿Characteristic,Total,Applicants,Spouses,Children
 Total,"11,729","8,943","1,186","1,600"
-SEX,,,,
 Female,"5,438","4,063",591,784
 Male,"6,291","4,880",595,816
-AGE,,,,
 Under 1 year,-,-,-,-
 1 to 4 years,250,22,-,228
 5 to 9 years,680,184,-,496
@@ -20,11 +18,9 @@ Under 1 year,-,-,-,-
 60 to 64 years,110,92,18,-
 65 to 74 years,130,98,32,-
 75 years and over,37,32,5,-
-BROAD AGE GROUP,,,,
 Under 16 years,"2,547","1,330",-,"1,217"
 16 to 20 years,"2,645","2,345",3,297
 21 years and over,"6,537","5,268","1,183",86
-MARITAL STATUS,,,,
 Married,"3,912","2,726","1,186",-
 Single,"7,421","5,821",-,"1,600"
 Widowed,109,109,-,-
