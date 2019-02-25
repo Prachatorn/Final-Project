@@ -1,4 +1,5 @@
 library(dplyr)
+library(ggplot2)
 
 arrival_relationships <- read.csv("Dataset/Refugees/arrival_relationships.csv",
                                   stringsAsFactors = F)
@@ -16,3 +17,5 @@ combined <- arrival_relationships %>%
 
 write.csv(combined, "Dataset/Refugees/combined_relationships.csv", 
           row.names = F)
+
+plot()
