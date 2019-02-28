@@ -1,9 +1,9 @@
 library(dplyr)
 library(ggplot2)
 
-arrival_relationships <- read.csv("Dataset/Refugees/arrival_relationships.csv",
+arrival_relationships <- read.csv("Refugees/arrival_relationships.csv",
                                   stringsAsFactors = F)
-asylum_relationships <- read.csv("Dataset/Refugees/asylum_relationships.csv",
+asylum_relationships <- read.csv("Refugees/asylum_relationships.csv",
                                  stringsAsFactors = F)
 
 # colnames(data)[colnames(data)=="old_name"] <- "new_name"
@@ -18,4 +18,7 @@ combined <- arrival_relationships %>%
 write.csv(combined, "Dataset/Refugees/combined_relationships.csv", 
           row.names = F)
 
-plot()
+line_plot <- ggplot(combined) +
+  geom_line(mapping = aes(arrival_applicants, asylum_applicants))
+
+line_plot
