@@ -25,7 +25,7 @@ We will be reading our data as a csv file.
 We have already reshaped our data to be more cohesive using dplyr. The original data was separated out by year. To use the same data but show how it changes over time, we joined our datasets.
 
 ###What (major/new) libraries will be using in this project (no need to list common libraries that are used in many projects such as dplyr)
-We will use “shiny”, “ggplot2”, “tidyr”, “maps”, and “leaflet”. 
+We will use `shiny, ggplot2, tidyr, maps, and leaflet.` 
 
 ###What major challenges do you anticipate? 
 We anticipate challenges in making our functions to render plots with data selected by the user. For example, we’d like to make a chart that shows statistics of a given country and given year when the user selects them from a drop down menu. We will probably challenge.
