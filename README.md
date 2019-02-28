@@ -18,7 +18,7 @@ Our target audience is the American people and anyone that is interested in immi
 - Which countries are refugees coming from during a given year? How has that changed over time? Which regions?
 - What were average age, sex, marital status for a given year?
 
-##Technical Description
+## Technical Description
 
 ###How will you be reading in your data (i.e., are you using an API, or is it a static .csv/.json file)? 
 
