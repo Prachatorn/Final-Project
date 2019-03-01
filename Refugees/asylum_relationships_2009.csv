@@ -1,5 +1,5 @@
 ﻿Characteristic,asylum_total_2009,asylum_applicants_2009,asylum_spouses_2009,asylum_children_2009
-   Total,"11,933","8,931","1,362","1,640"
+Total,"11,933","8,931","1,362","1,640"
 Male,"6,401","4,949",566,886
 Female,"5,532","3,982",796,754
 Under 1 year,4,         -,         -,4
@@ -22,7 +22,7 @@ Under 16 years,"1,265",71,         -,"1,194"
 16 to 20 years,916,586,13,317
 21 years and over,"9,752","8,274","1,349",129
 Single,"5,618","3,988",         -,"1,630"
-Married,"5,675","4,316","1,359",         -
-Widowed,173,173,         -,         -
+Married   ,"5,675","4,316","1,359",         -
+Widowed   ,173,173,         -,         -
 Divorced/separated,447,447,         -,         -
 Unknown,20,7,3,10

@@ -1,10 +1,11 @@
 library(dplyr)
 library(ggplot2)
 
-arrival_relationships <- read.csv("Refugees/arrival_relationships_2016.csv",
+arrival_relationships <- read.csv("Refugees/arrival_relationships_2013.csv",
                                   stringsAsFactors = F)
-asylum_relationships <- read.csv("Refugees/asylum_relationships_2016.csv",
+asylum_relationships <- read.csv("Refugees/asylum_relationships_2013.csv",
                                  stringsAsFactors = F)
+
 
 # colnames(data)[colnames(data)=="old_name"] <- "new_name"
 colnames(arrival_relationships)[colnames(arrival_relationships) == 
@@ -47,8 +48,8 @@ write_asylum_files <- function(asylum, year) {
                                           year, ".csv"), row.names = F)
 }
 
-write_arrival_files(arrival_relationships, 2016)
-write_asylum_files(asylum_relationships, 2016)
+write_arrival_files(arrival_relationships, 2013)
+write_asylum_files(asylum_relationships, 2013)
 
 # colnames(data)[colnames(data)=="old_name"] <- "new_name"
 colnames(arrival_relationships)[colnames(arrival_relationships) == 
