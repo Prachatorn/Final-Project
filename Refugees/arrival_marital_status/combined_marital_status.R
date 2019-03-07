@@ -38,3 +38,7 @@ combined_marital_status <- arrival_marital_status_2004 %>%
   left_join(arrival_marital_status_2016, by = "character")
 
 write.csv(combined_marital_status, "combined_marital_status.csv", row.names = F)
+
+vars <- list()
+vars$years <- c(2004, 2005)
+vars$total <- c(combined_age$arrival_total_2014[1], combined_age$arrival_total_2015[1])
