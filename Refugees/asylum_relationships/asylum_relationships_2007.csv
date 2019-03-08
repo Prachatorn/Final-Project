@@ -1,0 +1,28 @@
+﻿Characteristic,asylum_total_2007,asylum_applicants_2007,asylum_spouses_2007,asylum_children_2007
+Total,"12,463","8,987","1,481","1,995"
+Male,"6,488","4,928",564,996
+Female,"5,975","4,059",917,999
+Under 1 year,D,-,-,D
+1 to 4 years,220,D,-,D
+5 to 9 years,492,D,-,D
+10 to 14 years,534,13,-,521
+15 to 19 years,774,D,D,553
+20 to 24 years,"1,452","1,183",88,181
+25 to 29 years,"1,792","1,557",209,26
+30 to 34 years,"1,813","1,516",D,D
+35 to 39 years,"1,704","1,417",287,-
+40 to 44 years,"1,459","1,228",231,-
+45 to 49 years,"1,009",835,174,-
+50 to 54 years,607,509,98,-
+55 to 59 years,301,248,53,-
+60 to 64 years,146,130,16,-
+65 to 74 years,124,99,25,-
+75 years and over,33,D,D,-
+Under 16 years,"1,504",35, - ,"1,469"
+16 to 20 years,762,364,12,386
+21 years and over,"10,197","8,588","1,469",140
+Single,"5,640","3,646", - ,"1,994"
+Married   ,"6,144","4,664","1,480", -   
+Widowed   ,223,223, - , - 
+Divorced/separated,445,445, - , - 
+Unknown   ,11,9,1,1
