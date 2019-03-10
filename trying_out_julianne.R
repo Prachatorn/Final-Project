@@ -39,6 +39,18 @@ regional_arrivals <- regional_arrivals %>%
          "2015" = X2015, "2016" = X2016)  
 
 y <- gsub(",", "", regional_arrivals$`2007`)
-regional_arrivals[,-1] <- as.numeric(gsub(",", "", as.matrix(regional_arrivals[,-1])))
+regional_arrivals[,-1] <- suppressWarnings(as.numeric(gsub(",", "", 
+                                                           as.matrix(
+                                                             regional_arrivals[,-1]))))
+regional_arrivals[is.na(regional_arrivals)] <- 0
 
+ggplot(regional_arrivals,
+       aes(
+         x = regional_arrivals[,2:11],
+         y = regional_arrivals$Region.and.country.of.nationality,
+         color = "blue")
+) + geom_line() +
+  ggtitle("Change in Total Regional Arrivals From 2008-2016") +
+  xlab("Year") +
+  ylab("Arrivals")
 
