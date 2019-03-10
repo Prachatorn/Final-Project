@@ -40,6 +40,51 @@ country_arrivals[,-1] <- suppressWarnings(as.numeric(gsub(",", "",
                                                       country_arrivals[,-1]))))
 country_arrivals[is.na(country_arrivals)] <- 0
 
+newdata <- list()
+newdata$years <- c(2008:2016)
+newdata$africa <- c(regional_arrivals$`2008`[2],
+                    regional_arrivals$`2009`[2],regional_arrivals$`2010`[2], 
+                    regional_arrivals$`2011`[2], regional_arrivals$`2012`[2],
+                    regional_arrivals$`2013`[2], regional_arrivals$`2014`[2],
+                    regional_arrivals$`2015`[2], regional_arrivals$`2016`[2])
+newdata$asia <- c(regional_arrivals$`2008`[3],
+                  regional_arrivals$`2009`[3],regional_arrivals$`2010`[3], 
+                  regional_arrivals$`2011`[3], regional_arrivals$`2012`[3],
+                  regional_arrivals$`2013`[3], regional_arrivals$`2014`[3],
+                  regional_arrivals$`2015`[3], regional_arrivals$`2016`[3])
+
+newdata$europe <- c(regional_arrivals$`2008`[4],
+                    regional_arrivals$`2009`[4],regional_arrivals$`2010`[4], 
+                    regional_arrivals$`2011`[4], regional_arrivals$`2012`[4],
+                    regional_arrivals$`2013`[4], regional_arrivals$`2014`[4],
+                    regional_arrivals$`2015`[4], regional_arrivals$`2016`[4])
+
+newdata$north_america <- c(regional_arrivals$`2008`[5],
+                           regional_arrivals$`2009`[5],regional_arrivals$`2010`[5], 
+                           regional_arrivals$`2011`[5], regional_arrivals$`2012`[5],
+                           regional_arrivals$`2013`[5], regional_arrivals$`2014`[5],
+                           regional_arrivals$`2015`[5], regional_arrivals$`2016`[5])
+
+newdata$oceania <- c(regional_arrivals$`2008`[6],
+                     regional_arrivals$`2009`[6],regional_arrivals$`2010`[6], 
+                     regional_arrivals$`2011`[6], regional_arrivals$`2012`[6],
+                     regional_arrivals$`2013`[6], regional_arrivals$`2014`[6],
+                     regional_arrivals$`2015`[6], regional_arrivals$`2016`[6])
+
+newdata$south_america <- c(regional_arrivals$`2008`[7],
+                           regional_arrivals$`2009`[7],regional_arrivals$`2010`[7], 
+                           regional_arrivals$`2011`[7], regional_arrivals$`2012`[7],
+                           regional_arrivals$`2013`[7], regional_arrivals$`2014`[7],
+                           regional_arrivals$`2015`[7], regional_arrivals$`2016`[7])
+
+newdata$unknown <- c(regional_arrivals$`2008`[8],
+                     regional_arrivals$`2009`[8],regional_arrivals$`2010`[8], 
+                     regional_arrivals$`2011`[8], regional_arrivals$`2012`[8],
+                     regional_arrivals$`2013`[8], regional_arrivals$`2014`[8],
+                     regional_arrivals$`2015`[8], regional_arrivals$`2016`[8])
+
+regionals <- data.frame(newdata)
+
 page_one <- tabPanel(
   "Changes Over the Obama Era",
   sidebarLayout(
@@ -49,10 +94,9 @@ page_one <- tabPanel(
       selectInput(
         "area", 
         label = "Region", 
-        choices = c("africa" = "Africa", "asia" = "Asia", 
-        "europe" = "Europe", "north_america" = "North America", 
-        "oceania" = "Oceania", "south_america" = "South America", 
-        "unknown" = "Unknown"),
+        choices = c("africa" = "africa", "asia" = "asia", "europe" = "europe",
+                    "north_america" = "north_america", "oceania" =  "oceania", 
+                    "south_america" = "south_amerca", "unknown" = "unknown"),
         selected = "Asia"
       )
       ),
@@ -111,47 +155,4 @@ my_ui <- navbarPage(
 
 #>>>>>>> af830ed980fdf2674a8ba0d4d7efa0d61b93f098
 #>>>>>>> c692460e25121cfd7948c0bca12df35a41c89ba6
-newdata <- list()
-newdata$years <- c(2008:2016)
-newdata$africa <- c(regional_arrivals$`2008`[2],
-                    regional_arrivals$`2009`[2],regional_arrivals$`2010`[2], 
-                    regional_arrivals$`2011`[2], regional_arrivals$`2012`[2],
-                    regional_arrivals$`2013`[2], regional_arrivals$`2014`[2],
-                    regional_arrivals$`2015`[2], regional_arrivals$`2016`[2])
-newdata$asia <- c(regional_arrivals$`2008`[3],
-                  regional_arrivals$`2009`[3],regional_arrivals$`2010`[3], 
-                  regional_arrivals$`2011`[3], regional_arrivals$`2012`[3],
-                  regional_arrivals$`2013`[3], regional_arrivals$`2014`[3],
-                  regional_arrivals$`2015`[3], regional_arrivals$`2016`[3])
 
-newdata$europe <- c(regional_arrivals$`2008`[4],
-                  regional_arrivals$`2009`[4],regional_arrivals$`2010`[4], 
-                  regional_arrivals$`2011`[4], regional_arrivals$`2012`[4],
-                  regional_arrivals$`2013`[4], regional_arrivals$`2014`[4],
-                  regional_arrivals$`2015`[4], regional_arrivals$`2016`[4])
-
-newdata$north_america <- c(regional_arrivals$`2008`[5],
-                  regional_arrivals$`2009`[5],regional_arrivals$`2010`[5], 
-                  regional_arrivals$`2011`[5], regional_arrivals$`2012`[5],
-                  regional_arrivals$`2013`[5], regional_arrivals$`2014`[5],
-                  regional_arrivals$`2015`[5], regional_arrivals$`2016`[5])
-
-newdata$oceania <- c(regional_arrivals$`2008`[6],
-                  regional_arrivals$`2009`[6],regional_arrivals$`2010`[6], 
-                  regional_arrivals$`2011`[6], regional_arrivals$`2012`[6],
-                  regional_arrivals$`2013`[6], regional_arrivals$`2014`[6],
-                  regional_arrivals$`2015`[6], regional_arrivals$`2016`[6])
-
-newdata$south_america <- c(regional_arrivals$`2008`[7],
-                  regional_arrivals$`2009`[7],regional_arrivals$`2010`[7], 
-                  regional_arrivals$`2011`[7], regional_arrivals$`2012`[7],
-                  regional_arrivals$`2013`[7], regional_arrivals$`2014`[7],
-                  regional_arrivals$`2015`[7], regional_arrivals$`2016`[7])
-
-newdata$unknown <- c(regional_arrivals$`2008`[8],
-                  regional_arrivals$`2009`[8],regional_arrivals$`2010`[8], 
-                  regional_arrivals$`2011`[8], regional_arrivals$`2012`[8],
-                  regional_arrivals$`2013`[8], regional_arrivals$`2014`[8],
-                  regional_arrivals$`2015`[8], regional_arrivals$`2016`[8])
-
-regionals <- data.frame(newdata)

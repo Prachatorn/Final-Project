@@ -119,17 +119,17 @@ server <- function(input, output) {
   
   
   #Plots 
-  output$region_time <- renderPlot({
+   output$region_time <- renderPlot({
     ggplot(regionals,
-                  aes(
-                    x = years,
-                    y = input$area
-                    )
-  ) + geom_line() +
-    ggtitle("Change in Total Regional Arrivals From 2008-2016") +
-    xlab("Year") +
-    ylab("Arrivals")
-})
+                   aes(
+                     x = years,
+                     y = input$area
+                     )
+   ) + geom_line() +
+     ggtitle("Change in Total Regional Arrivals From 2008-2016") +
+     xlab("Year") +
+     ylab("Arrivals")
+ })
 
   # output$country_time <- renderPlot({
   #    ggplot(country_arrivals,
