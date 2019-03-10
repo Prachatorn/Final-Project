@@ -3,21 +3,35 @@ library(leaflet)
 library(maps)
 library(sp)
 library(rgdal)
+library(plotly)
 
 # Load in dataset
 
 ghost <- read.csv("Refugees/country_affirmative_asylum.csv", 
                   stringsAsFactors = F)
 
-colnames(ghost)[colnames(ghost) == "ï..Country"] <- "country"
+df <- read.csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_world_gdp_with_codes.csv')
 
+# light grey boundaries
+l <- list(color = toRGB("grey"), width = 0.5)
 
+# specify map projection/options
+g <- list(
+  showframe = FALSE,
+  showcoastlines = FALSE,
+  projection = list(type = 'Mercator')
+)
 
-affirmative <- leaflet(data = ghost) %>%
-  addProviderTiles("OpenStreetMap.Mapnik") %>%
-  addMarkers(group = ghost$country)
-affirmative  
+p <- plot_geo(df) %>%
+  add_trace(
+    z = ~GDP..BILLIONS., color = ~GDP..BILLIONS., colors = 'Blues',
+    text = ~COUNTRY, locations = ~CODE, marker = list(line = l)
+  ) %>%
+  colorbar(title = 'GDP Billions US$', tickprefix = '$') %>%
+  layout(
+    title = '2014 Global GDP<br>Source:<a href="https://www.cia.gov/library/publications/the-world-factbook/fields/2195.html">CIA World Factbook</a>',
+    geo = g
+  )
 
-leaflet(spain) %>%
-  addPolygons() %>%
-  addTiles()
+p
+
