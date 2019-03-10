@@ -1,8 +1,14 @@
+<<<<<<< HEAD
+shinyServer(function(input, output) {
+  
+})
+=======
 library(shiny)
 library(dplyr)
 library(ggplot2)
 
 
+<<<<<<< HEAD
 server <- function(input, output) {
 
   # Obama Era Stats
@@ -42,3 +48,6 @@ server <- function(input, output) {
   
   
 }
+=======
+>>>>>>> af830ed980fdf2674a8ba0d4d7efa0d61b93f098
+>>>>>>> c692460e25121cfd7948c0bca12df35a41c89ba6
