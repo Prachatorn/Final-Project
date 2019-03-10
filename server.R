@@ -1,4 +1,40 @@
+<<<<<<< HEAD
 #<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+#Read in packages
+library(dplyr)
+library(ggplot2)
+library(shiny)
+library(lintr)
+
+#Read in Country Affirmative Asylum Data
+affirmative <- read.csv("Refugees/country_affirmative_asylum.csv", stringsAsFactors = FALSE)
+
+#Make data frame from 2008 - 2016
+affirmative <- affirmative %>% 
+  select(Country, X2008, X2009, X2010, X2011, X2012, X2013, X2014, X2015, X2016)
+
+#Read in Country Defensive Asylum Data
+defensive <- read.csv("Refugees/country_defensive_asylum.csv", stringsAsFactors = FALSE)
+
+#Make data frame of 2008-2016
+defensive <- defensive %>% 
+  select(Country, X2008, X2009, X2010, X2011, X2012, X2013, X2014, X2015, X2016)
+
+#replace non numeric values with NA
+Unavailable <- function(value){
+  if (value = "-" OR "D")
+    return(NA)
+}
+#Create data frame of total and country
+
+#Utalize affirmative["X2008"][[1]][1] to select columns 
+
+#Use a for loop or sapply to divide each by the total. 
+=======
+<<<<<<< HEAD
+>>>>>>> 7e9644afd8ad1a5258086d4b1512c3bf871a9cc9
 shinyServer(function(input, output) {
   
 })
@@ -65,8 +101,15 @@ server <- function(input, output) {
   
   
 }
+<<<<<<< HEAD
 #=======
 #>>>>>>> af830ed980fdf2674a8ba0d4d7efa0d61b93f098
 #>>>>>>> c692460e25121cfd7948c0bca12df35a41c89ba6
 newdaa <- list()
 newdaa$years <- c(2007:2016)
+=======
+=======
+>>>>>>> af830ed980fdf2674a8ba0d4d7efa0d61b93f098
+>>>>>>> c692460e25121cfd7948c0bca12df35a41c89ba6
+>>>>>>> 05cc561354c505ab5c4c5d4066c97bf699c0e797
+>>>>>>> 7e9644afd8ad1a5258086d4b1512c3bf871a9cc9
