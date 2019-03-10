@@ -121,8 +121,8 @@ server <- function(input, output) {
   #Plots 
    output$region_time <- renderPlot({
     ggplot(regionals,
-                   aes(
-                     x = years,
+                   aes_string(
+                     x = "years",
                      y = input$area
                      )
    ) + geom_line() +
