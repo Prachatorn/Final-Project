@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Load in packages
 
 library(shiny)
@@ -22,3 +23,8 @@ shinyUI(
     )
   )
 )
+=======
+library(shiny)
+library(ggplot2)
+library(dplyr)
+>>>>>>> af830ed980fdf2674a8ba0d4d7efa0d61b93f098
