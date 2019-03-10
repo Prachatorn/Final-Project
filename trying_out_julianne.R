@@ -1,5 +1,6 @@
 library(ggplot2)
 library(dplyr)
+library(tidyr)
 
 #Show the caps & spots filled charts
 #Show how immigration has changed over time
@@ -38,18 +39,28 @@ regional_arrivals <- regional_arrivals %>%
          "2011" = X2011, "2012" = X2012, "2013" = X2013, "2014" = X2014, 
          "2015" = X2015, "2016" = X2016)  
 
-y <- gsub(",", "", regional_arrivals$`2007`)
 regional_arrivals[,-1] <- suppressWarnings(as.numeric(gsub(",", "", 
                                                            as.matrix(
                                                              regional_arrivals[,-1]))))
 regional_arrivals[is.na(regional_arrivals)] <- 0
+regional_arrivals$year <- list("")
 
-ggplot(regional_arrivals,
+regionals <- regional_arrivals %>%
+  select(Region.and.country.of.nationality, `2008`, `2009`, `2010`, `2011`, `2012`,
+         `2013`, `2014`, `2015`, `2016`) %>%
+  gather(key = year, value = totals, `2008`:`2016`) # all columns except `state`
+regionals <- regionals %>% 
+  mutate(year = as.numeric(year))
+
+ggplot(regionals,
        aes(
-         x = regional_arrivals[,2:11],
-         y = regional_arrivals$Region.and.country.of.nationality,
-         color = "blue")
-) + geom_line() +
+         x = year
+          
+         #color = "blue"
+         #regionals$Region.and.country.of.nationality == "Africa"
+         )
+) + geom_line(aes(y = regionals$Region.and.country.of.nationality)) +
+  geom_line(aes(y = regionals$totals))
   ggtitle("Change in Total Regional Arrivals From 2008-2016") +
   xlab("Year") +
   ylab("Arrivals")

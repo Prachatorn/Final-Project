@@ -1,44 +1,44 @@
-<<<<<<< HEAD
 #<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+#<<<<<<< HEAD
+#=======
+#<<<<<<< HEAD
 #Read in packages
 library(dplyr)
 library(ggplot2)
 library(shiny)
 library(lintr)
 
-#Read in Country Affirmative Asylum Data
-affirmative <- read.csv("Refugees/country_affirmative_asylum.csv", stringsAsFactors = FALSE)
-
-#Make data frame from 2008 - 2016
-affirmative <- affirmative %>% 
-  select(Country, X2008, X2009, X2010, X2011, X2012, X2013, X2014, X2015, X2016)
-
-#Read in Country Defensive Asylum Data
-defensive <- read.csv("Refugees/country_defensive_asylum.csv", stringsAsFactors = FALSE)
-
-#Make data frame of 2008-2016
-defensive <- defensive %>% 
-  select(Country, X2008, X2009, X2010, X2011, X2012, X2013, X2014, X2015, X2016)
-
-#replace non numeric values with NA
-Unavailable <- function(value){
-  if (value = "-" OR "D")
-    return(NA)
-}
+# #Read in Country Affirmative Asylum Data
+# affirmative <- read.csv("Refugees/country_affirmative_asylum.csv", stringsAsFactors = FALSE)
+# 
+# #Make data frame from 2008 - 2016
+# affirmative <- affirmative %>% 
+#   select(Country, X2008, X2009, X2010, X2011, X2012, X2013, X2014, X2015, X2016)
+# 
+# #Read in Country Defensive Asylum Data
+# defensive <- read.csv("Refugees/country_defensive_asylum.csv", stringsAsFactors = FALSE)
+# 
+# #Make data frame of 2008-2016
+# defensive <- defensive %>% 
+#   select(Country, X2008, X2009, X2010, X2011, X2012, X2013, X2014, X2015, X2016)
+# 
+# #replace non numeric values with NA
+# Unavailable <- function(value){
+#   if (value = "-" OR "D")
+#     return(NA)
+# }
 #Create data frame of total and country
 
 #Utalize affirmative["X2008"][[1]][1] to select columns 
 
 #Use a for loop or sapply to divide each by the total. 
-=======
-<<<<<<< HEAD
->>>>>>> 7e9644afd8ad1a5258086d4b1512c3bf871a9cc9
-shinyServer(function(input, output) {
-  
-})
-#=======
+# =======
+# <<<<<<< HEAD
+# >>>>>>> 7e9644afd8ad1a5258086d4b1512c3bf871a9cc9
+# shinyServer(function(input, output) {
+#   
+# })
+# #=======
 library(shiny)
 library(dplyr)
 library(ggplot2)
@@ -55,11 +55,14 @@ server <- function(input, output) {
            "2011" = X2011, "2012" = X2012, "2013" = X2013, "2014" = X2014, 
            "2015" = X2015, "2016" = X2016)  
   
-  y <- gsub(",", "", regional_arrivals$`2007`)
   regional_arrivals[,-1] <- suppressWarnings(as.numeric(gsub(",", "", 
                                                       as.matrix(
                                                       regional_arrivals[,-1]))))
   regional_arrivals[is.na(regional_arrivals)] <- 0
+  regionals <- regional_arrivals %>%
+    select(Region.and.country.of.nationality, `2008`, `2009`, `2010`, `2011`, `2012`,
+           `2013`, `2014`, `2015`, `2016`) %>%
+    gather(key = year, value = totals, `2008`:`2016`, -Region.and.country.of.nationality) # all columns except `state`
   
   country_arrivals <- read.csv("Refugees/country_arrivals.csv", 
                                stringsAsFactors = F)
@@ -76,40 +79,39 @@ server <- function(input, output) {
   
   #Plots 
   output$region_time <- renderPlot({
-    ggplot(regional_arrivals,
-                  aes(
-                    x = regional_arrivals[2:11],
-                    y = input$region,
-                    color = "blue")
+    ggplot(regionals,
+                  aes_string(
+                    x = "year",
+                    y = input$region
+                    )
   ) + geom_line() +
     ggtitle("Change in Total Regional Arrivals From 2008-2016") +
     xlab("Year") +
     ylab("Arrivals")
 })
 
-  output$country_time <- renderPlot({
-     ggplot(country_arrivals,
-                    aes(
-                      x = country_arrivals[2:11],
-                      y = input$country,
-                      color = "pink")
-    ) + geom_line() +
-      ggtitle("Change in Total Arrivals From 2008-2016") +
-      xlab("Year") +
-      ylab("Arrivals")
-  })
+  # output$country_time <- renderPlot({
+  #    ggplot(country_arrivals,
+  #                   aes(
+  #                     x = country_arrivals[2:11],
+  #                     y = input$country,
+  #                     color = "pink")
+  #   ) + geom_line() +
+  #     ggtitle("Change in Total Arrivals From 2008-2016") +
+  #     xlab("Year") +
+  #     ylab("Arrivals")
+  # })
   
   
 }
-<<<<<<< HEAD
+#<<<<<<< HEAD
 #=======
 #>>>>>>> af830ed980fdf2674a8ba0d4d7efa0d61b93f098
 #>>>>>>> c692460e25121cfd7948c0bca12df35a41c89ba6
-newdaa <- list()
-newdaa$years <- c(2007:2016)
-=======
-=======
->>>>>>> af830ed980fdf2674a8ba0d4d7efa0d61b93f098
->>>>>>> c692460e25121cfd7948c0bca12df35a41c89ba6
->>>>>>> 05cc561354c505ab5c4c5d4066c97bf699c0e797
->>>>>>> 7e9644afd8ad1a5258086d4b1512c3bf871a9cc9
+# 
+# =======
+# =======
+# >>>>>>> af830ed980fdf2674a8ba0d4d7efa0d61b93f098
+# >>>>>>> c692460e25121cfd7948c0bca12df35a41c89ba6
+# >>>>>>> 05cc561354c505ab5c4c5d4066c97bf699c0e797
+# >>>>>>> 7e9644afd8ad1a5258086d4b1512c3bf871a9cc9

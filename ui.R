@@ -5,6 +5,7 @@ library(shiny)
 library(plotly)
 library(ggplot2)
 library(dplyr)
+library(tidyr)
 
 #<<<<<<< HEAD
 #Obama Era Stats
@@ -20,6 +21,10 @@ regional_arrivals[,-1] <- suppressWarnings(as.numeric(gsub(",", "",
                                                            as.matrix(
                                                              regional_arrivals[,-1]))))
 regional_arrivals[is.na(regional_arrivals)] <- 0
+regionals <- regional_arrivals %>%
+  select(Region.and.country.of.nationality, `2008`, `2009`, `2010`, `2011`, `2012`,
+         `2013`, `2014`, `2015`, `2016`) %>%
+  gather(key = year, value = totals, `2008`:`2016`, -Region.and.country.of.nationality)
 
 # country arrivals
 country_arrivals <- read.csv("Refugees/country_arrivals.csv", 
@@ -44,7 +49,7 @@ page_one <- tabPanel(
       selectInput(
         "region", 
         label = "Region", 
-        choices = regional_arrivals$Region.and.country.of.nationality, 
+        choices = Region.and.country.of.nationality,
         selected = "Africa"
       )
       ),
