@@ -9,11 +9,15 @@ library("shiny")
 library("rsconnect")
 
 # Read the arrival csv file 
-arrival_total_data <- read.csv("Refugees/total_arrival.csv", stringsAsFactors = FALSE)
+# arrival_total_data <- read.csv("Refugees/total_arrival.csv", stringsAsFactors = FALSE)
+
+# Read arrival age data
 arrival_age_data <- read.csv("Refugees/arrival_age/combined_age.csv",
                              stringsAsFactors = FALSE)
+# Read arrival gender data
 arrival_gender_data <- read.csv("Refugees/arrival_gender/combined_gender.csv",
                                 stringsAsFactors = FALSE)
+# Read arrival marital status data
 arrival_marital_status <- read.csv("Refugees/arrival_marital_status/combined_marital_status.csv",
                                    stringsAsFactors = FALSE)
 # y_range <- range(arrival_total_data$Number)
@@ -28,29 +32,30 @@ arrival_marital_status <- read.csv("Refugees/arrival_marital_status/combined_mar
 # ye <- mutate(yu = as.numeric(ty$ages))
 
 ################################ CHART ONE TOTAL ARRIVALS FROM 1980 TO 2016######################
-total_data <- arrival_total_data %>%
-  # arrange(desc(Year)) %>%
-  # mutate(year_of_arrivals = as.numeric(Year)) %>%
-  # select(Year, Number) %>%
-  mutate(num_totals = as.numeric(gsub(",", "", Number))) %>%
-  select(Year, num_totals)
-
-chart_one <- ggplot(data = total_data) +
-   geom_col(
-     mapping = aes(x = Year, y = num_totals, fill = "Year"
-     )
-   ) +
-   scale_color_brewer(palette = "Set1") +
-   labs(y = "Number of Refugee Arrivals in the United States",
-        title = "Total Number of Refugee Arrivals in the United States per Year") +
-  theme(axis.text.x = element_text(angle = 60, hjust = 1))
-
- chart_one #
+# total_data <- arrival_total_data %>%
+#   # arrange(desc(Year)) %>%
+#   # mutate(year_of_arrivals = as.numeric(Year)) %>%
+#   # select(Year, Number) %>%
+#   mutate(num_totals = as.numeric(gsub(",", "", Number))) %>%
+#   select(Year, num_totals)
+# 
+# chart_one <- ggplot(data = total_data) +
+#    geom_col(
+#      mapping = aes(x = Year, y = num_totals, fill = "Year"
+#      )
+#    ) +
+#    scale_color_brewer(palette = "Set1") +
+#    labs(y = "Number of Refugee Arrivals in the United States",
+#         title = "Total Number of Refugee Arrivals in the United States per Year") +
+#   theme(axis.text.x = element_text(angle = 60, hjust = 1))
+# 
+#  chart_one #
  
 ############################################# CHART TWO ARRIVAL AGES CHART#######################
- creates_dataframe <- function(name_of_dataset){
- 
-   changed_data <- name_of_dataset %>%
+
+
+   arrival_age <- arrival_age_data %>%
+   # rename(replace = c("0 to 1 year" = "Under 1 year")) %>% 
    filter(character != "Total") %>% 
    mutate(year_2008 = as.numeric(gsub(",", "", arrival_total_2008)), 
           year_2009 = as.numeric(gsub(",", "", arrival_total_2009)),
@@ -65,8 +70,8 @@ chart_one <- ggplot(data = total_data) +
           year_2011, year_2012,
           year_2013, year_2014,
           year_2015, year_2016)
- }
-   chart_two <- ggplot(data = changed_data) +
+ 
+   chart_two <- ggplot(data = arrival_age) +
    geom_col(
      mapping = aes(y = character, x = year_2008, fill = year_2008)
    ) +
@@ -119,7 +124,7 @@ arrival_f_m <- arrival_gender_data %>%
 
    chart_three <- ggplot(data = arrival_f_m) +
      geom_col( 
-       mapping = aes(x = character , y = arrival_total_2009, fill = character)
+       mapping = aes(x = character , y = year_2009, fill = character)
      ) +
      theme(axis.text.x = element_text(angle = 60, hjust = 1)) + coord_flip()
    
