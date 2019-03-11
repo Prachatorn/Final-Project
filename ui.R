@@ -6,6 +6,10 @@ library(plotly)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
+<<<<<<< HEAD
+library(rsconnect)
+=======
+>>>>>>> 9ffd48e968d4cf7a30f4275f48387e7c03a10b38
 
 #<<<<<<< HEAD
 #Obama Era Stats
@@ -16,13 +20,86 @@ caps <- data.frame("Year" = c(2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
                    "Admitted" = c(60107, 74602, 73293, 56384, 58179, 69909, 
                                   69975, 69920, 84989))
 #regional arrivals chart
+<<<<<<< HEAD
 regional_arrivals <- read.csv("Refugees/regional_arrivals.csv", 
                               stringsAsFactors = F)
 setnames(regional_arrivals, old=c("X2007","X2008", "X2009", "X2010", "X2011", 
                                   "X2012", "X2013", "X2014", "X2015", "X2016"),
          new=c("2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014",
                "2015", "2016"))
+=======
+# regional_arrivals <- read.csv("Refugees/regional_arrivals.csv", 
+#                               stringsAsFactors = F)
+# regional_arrivals <- regional_arrivals %>% 
+#   rename("2007" = X2007, "2008" = X2008, "2009" = X2009, "2010" = X2010, 
+#          "2011" = X2011, "2012" = X2012, "2013" = X2013, "2014" = X2014, 
+#          "2015" = X2015, "2016" = X2016)  
+# 
+# regional_arrivals[,-1] <- suppressWarnings(as.numeric(gsub(",", "", 
+#                                                            as.matrix(
+#                                                              regional_arrivals[,-1]))))
+# regional_arrivals[is.na(regional_arrivals)] <- 0
+# 
+# # country arrivals
+# country_arrivals <- read.csv("Refugees/country_arrivals.csv", 
+#                              stringsAsFactors = F)
+# 
+# country_arrivals <- country_arrivals %>% 
+#   rename("2007" = X2007, "2008" = X2008, "2009" = X2009, "2010" = X2010, 
+#          "2011" = X2011, "2012" = X2012, "2013" = X2013, "2014" = X2014, 
+#          "2015" = X2015, "2016" = X2016)  
+# 
+# country_arrivals[,-1] <- suppressWarnings(as.numeric(gsub(",", "", 
+#                                                          as.matrix(
+#                                                       country_arrivals[,-1]))))
+# country_arrivals[is.na(country_arrivals)] <- 0
+# 
+# page_one <- tabPanel(
+#   "Changes Over the Obama Era",
+#   sidebarLayout(
+#     sidebarPanel(
+#       helpText("Choose a region to see how arrivals from that area changed 
+#                over the Obama administration"),
+#       selectInput(
+#         "region", 
+#         label = "Region", 
+#         choices = regional_arrivals$Region.and.country.of.nationality, 
+#         selected = "Africa"
+#       )
+#       ),
+#     mainPanel(
+#       plotOutput("region_time"),
+#       p("This plot displays the change in total arrivals over time of the
+#         selected region. The time frame is from 2008 to 2016, which marks the 
+#         election of President Obama and the end of his two terms.")
+#      
+#     )
+#     ),
+# sidebarLayout(
+#   sidebarPanel(
+#   helpText("Choose a country (or two) to see how arrivals from that area 
+#   changed over the Obama administration"),
+#   selectInput(
+#     "country", 
+#    label = "country", 
+#    choices = country_arrivals$Country, 
+#    selected = "Afghanistan"
+#    )
+#    ),
+#     mainPanel(
+#       plotOutput("country_time"),
+#       p("This plot provides information about the total arrivals of a selected
+#     country during the Obama administration. You may select one or two 
+#     countries to compare their numbers.")
+#     )
+#   )
+# )
+>>>>>>> 42cecb3e991ca28ff7a50a6d8d7e3328a98f39a0
 
+<<<<<<< HEAD
+page_two <- tabPanel(
+  "Refugee Arrivals",
+=======
 regional_arrivals[,-1] <- suppressWarnings(as.numeric(gsub(",", "", 
                                                            as.matrix(
                                                              regional_arrivals[,-1]))))
@@ -399,8 +476,10 @@ countries <- data.frame(countries)
 
 page_one <- tabPanel(
   "Changes Over the Obama Era",
+>>>>>>> 9ffd48e968d4cf7a30f4275f48387e7c03a10b38
   sidebarLayout(
     sidebarPanel(
+<<<<<<< HEAD
       helpText("The ceiling cap for refugee admittance has changed drastically in
                the last few years. The graph to the left displays more information 
                about the amount of people given refugee status in the United States
@@ -421,23 +500,71 @@ The ceiling was set to its highest over the eight years during the last year of
     sidebarPanel(
       helpText("Choose a region to see how arrivals from that area changed 
                over the Obama administration"),
+=======
+      helpText("Choose a year to see the number of arrivals of a certain age in 
+               the given year"),
+>>>>>>> 42cecb3e991ca28ff7a50a6d8d7e3328a98f39a0
       selectInput(
+<<<<<<< HEAD
+        "year_age", 
+        label = "Year", 
+        choices = list("2008" = "year_2008", "2009" = "year_2009",
+                        "2010" = "year_2010", "2011"= "year_2011",
+                       "2012" = "year_2012", "2013" = "year_2013",
+                       "2014" = "year_2014", "2015" = "year_2015", 
+                       "2016" = "year_2016")
+        # selected = ""
+=======
         "area", 
         label = "Region", 
         choices = c("Africa" = "africa", "Asia" = "asia", "Europe" = "europe",
                     "North_america" = "north_america", "Oceania" =  "oceania", 
                     "South America" = "south_america", "Unknown" = "unknown"),
         selected = "Asia"
+>>>>>>> 9ffd48e968d4cf7a30f4275f48387e7c03a10b38
       )
       ),
     mainPanel(
-      plotOutput("region_time"),
-      p("This plot displays the change in total arrivals over time of the
-        selected region. The time frame is from 2008 to 2016, which marks the 
-        election of President Obama and the end of his two terms.")
-     
+      plotOutput("age_chart"),
+      p("This plot displays the...")
     )
+      ),
+  sidebarLayout(
+    sidebarPanel(
+      helpText("Choose a year to see the number of Male and Female arrivals
+                in the given year"),
+      selectInput(
+        "year_gender", 
+        label = "Year", 
+        choices = list("2008" = "year_2008", "2009" = "year_2009",
+                       "2010" = "year_2010", "2011"= "year_2011",
+                       "2012" = "year_2012", "2013" = "year_2013",
+                       "2014" = "year_2014", "2015" = "year_2015", 
+                       "2016" = "year_2016")
+        # selected = ""
+      )
     ),
+    mainPanel(
+      plotOutput("gender_chart"),
+      p("This plot displays the...")
+    )
+  ),
+  sidebarLayout(
+    sidebarPanel(
+      helpText("Choose a year to see the number of arrivals with a certain
+               Martial Status in the given year"),
+      selectInput(
+        "year_marital_status", 
+        label = "Year", 
+        choices = list("2008" = "year_2008", "2009" = "year_2009",
+                       "2010" = "year_2010", "2011"= "year_2011",
+                       "2012" = "year_2012", "2013" = "year_2013",
+                       "2014" = "year_2014", "2015" = "year_2015", 
+                       "2016" = "year_2016")
+        # selected = ""
+      )
+    ),
+<<<<<<< HEAD
 sidebarLayout(
   sidebarPanel(
   helpText("Choose a country (or two) to see how arrivals from that area 
@@ -449,18 +576,19 @@ sidebarLayout(
    selected = "Afghanistan"
    )
    ),
+=======
+>>>>>>> 42cecb3e991ca28ff7a50a6d8d7e3328a98f39a0
     mainPanel(
-      plotOutput("country_time"),
-      p("This plot provides information about the total arrivals of a selected
-    country during the Obama administration. You may select one or two 
-    countries to compare their numbers.")
+      plotOutput("martial_status_chart"),
+      p("This plot displays the...")
     )
   )
 )
 
 my_ui <- navbarPage(
   "Refugee Statistics Under the Obama Administration",
-  page_one
+  # page_one,
+  page_two
 )
     
 #=======
