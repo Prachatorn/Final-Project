@@ -4,14 +4,23 @@ library(maps)
 library(sp)
 library(rgdal)
 library(plotly)
+library(dplyr)
 
 # Load in dataset
 
-ghost <- read.csv("Refugees/country_affirmative_asylum.csv", 
+affirmative_asylum <- read.csv("Refugees/country_affirmative_asylum.csv",
                   stringsAsFactors = F)
 
-df <- read.csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_world_gdp_with_codes.csv')
+colnames(affirmative_asylum)[colnames(affirmative_asylum) == 
+                                  "ï..Country"] <- "country"
 
+df <- read.csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_world_gdp_with_codes.csv',
+               stringsAsFactors = F)
+
+affirmative <- affirmative_asylum %>%
+  filter(code != "NA")
+
+# https://plot.ly/r/choropleth-maps/#world-choropleth-map
 # light grey boundaries
 l <- list(color = toRGB("grey"), width = 0.5)
 
@@ -22,14 +31,13 @@ g <- list(
   projection = list(type = 'Mercator')
 )
 
-p <- plot_geo(df) %>%
+p <- plot_geo(affirmative) %>%
   add_trace(
-    z = ~GDP..BILLIONS., color = ~GDP..BILLIONS., colors = 'Blues',
-    text = ~COUNTRY, locations = ~CODE, marker = list(line = l)
+    z = ~X2007, color = ~X2007, colors = 'Blues',
+    text = ~country, locations = ~code, marker = list(line = l)
   ) %>%
-  colorbar(title = 'GDP Billions US$', tickprefix = '$') %>%
   layout(
-    title = '2014 Global GDP<br>Source:<a href="https://www.cia.gov/library/publications/the-world-factbook/fields/2195.html">CIA World Factbook</a>',
+    title = "Affirmative_asylums to the US",
     geo = g
   )
 
