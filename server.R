@@ -6,6 +6,7 @@ library(tidyr)
 library(rsconnect)
 source("regionals.R")
 source("countries.R")
+source("world_map.R")
 
 # Read arrival age data
 arrival_age_data <- read.csv("Refugees/arrival_age/combined_age.csv",

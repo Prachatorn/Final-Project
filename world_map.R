@@ -64,11 +64,11 @@ affirmative_country <- data.frame(affirmative_country)
 
 # https://plot.ly/r/choropleth-maps/#world-choropleth-map
 
-#affirmative_map <- function(years) {
+affirmative_map <- function(years) {
   affirm_map <- plot_geo(affirmative_country) %>%
     add_trace(
-      z = ~year_2007,
-      color = ~year_2007,
+      z = ~get(paste0("year_", years)),
+      color = ~get(paste0("year_", years)),
       colors = "Reds",
       text = ~country,
       locations = ~code,
@@ -90,11 +90,10 @@ affirmative_country <- data.frame(affirmative_country)
         projection = list(type = "Mercator")
       )
     )
-affirm_map
-  # return(affirm_map)
-# }
+  return(affirm_map)
+}
 
-affirmative_map("year_2007")
+affirmative_map(2007)
 
 
 # Working on the map for defensive asylumn for immigrants coming to the
@@ -107,7 +106,8 @@ defensive <- defensive_asylum %>%
   filter(code != "NA")
 
 defensive[defensive == "-"] <- 0
-defensive[defensive == "D"] <- NA
+defensive[defensive == "D"] <- 0
+defensive[defensive == "X"] <- 0
 defensive <- defensive %>%
   rename_at(
     vars(starts_with("X")),
@@ -147,29 +147,34 @@ defensive_country <- defensive_country %>%
 
 defensive_country <- data.frame(defensive_country)
 
-plot_geo(defensive_country) %>%
-  add_trace(
-    z = ~year_2007,
-    color = ~year_2007,
-    colors = "Blues",
-    text = ~country,
-    locations = ~code,
-    marker = list(
-      line = list(
-        color = toRGB("black"),
-        width = 0.5
+defensive_countries <- function(years) {
+  defensive_map <- plot_geo(defensive_country) %>%
+    add_trace(
+      z = ~get(paste0("year_", years)),
+      color = ~get(paste0("year_", years)),
+      colors = "Blues",
+      text = ~country,
+      locations = ~code,
+      marker = list(
+        line = list(
+          color = toRGB("black"),
+          width = 0.5
+        )
       )
-    )
-  ) %>%
-  colorbar(
-    title = "# Of People"
-  ) %>%
-  layout(
-    title = "Defensive Asylums to the US From Around The World",
-    geo = list(
+    ) %>%
+    colorbar(
+      title = "# Of People"
+    ) %>%
+    layout(
+      title = "Defensive Asylums to the US From Around The World",
+      geo = list(
       showframe = FALSE,
       showcoastlines = TRUE,
       projection = list(type = "Mercator")
     )
   )
+  return(defensive_map)
+}
+
+defensive_countries(2007)
 
