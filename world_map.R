@@ -1,12 +1,17 @@
 # load in package
+
 library(plotly)
 library(dplyr)
 
 # Load in dataset
 
 affirmative_asylum <- read.csv("Refugees/country_affirmative_asylum.csv",
-  stringsAsFactors = F
-)
+  stringsAsFactors = F)
+defensive_asylum <- read.csv("Refugees/country_defensive_asylum.csv",
+                             stringsAsFactors = F)
+
+# Working on the map for affirmative asylumn for immigrants coming to the
+# United States.
 
 colnames(affirmative_asylum)[colnames(affirmative_asylum) ==
   "ï..Country"] <- "country"
@@ -15,7 +20,8 @@ affirmative <- affirmative_asylum %>%
   filter(code != "NA")
 
 affirmative[affirmative == "-"] <- 0
-affirmative[affirmative == "D"] <- NA
+affirmative[affirmative == "D"] <- 0
+affirmative[affirmative == "X"] <- 0
 affirmative <- affirmative %>%
   rename_at(
     vars(starts_with("X")),
@@ -38,7 +44,7 @@ affirmative_country <- affirmative %>%
     country
   )
 
-num_affirmative <- data.matrix(affirmative[2:11])
+suppressWarnings(num_affirmative <- data.matrix(affirmative[2:11]))
 affirmative_country <- affirmative_country %>%
   mutate(
     year_2007 = num_affirmative[, 1],
@@ -57,39 +63,45 @@ affirmative_country <- affirmative_country %>%
 affirmative_country <- data.frame(affirmative_country)
 
 # https://plot.ly/r/choropleth-maps/#world-choropleth-map
-p <- plot_geo(affirmative_country) %>%
-  add_trace(
-    z = ~year_2007,
-    color = ~year_2007,
-    colors = "Reds",
-    text = ~country,
-    locations = ~code,
-    marker = list(
-      line = list(
-        color = toRGB("black"),
-        width = 0.5
+
+#affirmative_map <- function(years) {
+  affirm_map <- plot_geo(affirmative_country) %>%
+    add_trace(
+      z = ~year_2007,
+      color = ~year_2007,
+      colors = "Reds",
+      text = ~country,
+      locations = ~code,
+      marker = list(
+        line = list(
+          color = toRGB("black"),
+          width = 0.5
+        )
+      )
+    ) %>%
+    colorbar(
+      title = "# Of People"
+    ) %>%
+    layout(
+      title = "Affirmative Asylums to the US From Around The World",
+      geo = list(
+        showframe = FALSE,
+        showcoastlines = TRUE,
+        projection = list(type = "Mercator")
       )
     )
-  ) %>%
-  colorbar(
-    title = "# Of People"
-  ) %>%
-  layout(
-    title = "Affirmative Asylums to the US From Around The World",
-    geo = list(
-      showframe = FALSE,
-      showcoastlines = TRUE,
-      projection = list(type = "Mercator")
-    )
-  )
-p
+affirm_map
+  # return(affirm_map)
+# }
 
-defensive_asylum <- read.csv("Refugees/country_defensive_asylum.csv",
-  stringsAsFactors = F
-)
+affirmative_map("year_2007")
+
+
+# Working on the map for defensive asylumn for immigrants coming to the
+# United States.
 
 colnames(defensive_asylum)[colnames(defensive_asylum) ==
-  "ï..Country"] <- "country"
+                             "ï..Country"] <- "country"
 
 defensive <- defensive_asylum %>%
   filter(code != "NA")
