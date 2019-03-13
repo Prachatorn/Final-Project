@@ -24,3 +24,4 @@ server <- function(input, output) {
       return(world_map(input$asylums,input$year))
     })
 }
+
