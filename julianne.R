@@ -4,7 +4,7 @@ library(tidyr)
 library(shiny)
 library(rsconnect)
 library(data.table)
-
+library(plotly)
 #Show the caps & spots filled charts
 #Show how immigration has changed over time
 
@@ -397,45 +397,50 @@ countries <- data.frame(countries)
 
 #Plots
 server <- function(input, output) {
-output$region_time <- renderPlot({
-  ggplot(regionals,
-         aes_string(
-           x = "years",
-           y = input$area
-         )
-  ) + geom_line() +
-    ggtitle("Change in Total Regional Arrivals by Region From 2008-2016") +
-    xlab("Year") +
-    ylab("Arrivals")
-})
-
-output$country_time <- renderPlot({
-  ggplot(countries,
-         aes_string(
-           x = "year",
-           y = input$country
-         )
-  ) + geom_line() +
-    ggtitle("Change in Total Arrivals by Country From 2008-2016") +
-    xlab("Year") +
-    ylab("Arrivals")
-})
-
-output$ceilings <- renderPlot({
-  ggplot(caps, aes(x = Year)) +
-    geom_line(aes(y= Cap, colour= "Cap")) +
-    geom_line(aes(y= Admitted, colour= "Admitted")) +
-    geom_point(aes (y = Cap)) +
-    geom_point(aes (y = Admitted)) +
-    scale_y_continuous("Total Numbers of People",
-                       breaks= seq(56000, 86000, 2000)) +
-    ggtitle("Refugee Admissions Ceiling vs Total Refugee Admissions") +
-    scale_color_manual(name = "Total Numbers", values= c("Cap" = "red",
-                                                         "Admitted" = "green"),
-                       labels = c("Admitted", "Ceiling Cap"))
+  output$region_time <- renderPlotly({
+    region_plot <- ggplot(regionals,
+                          aes_string(
+                            x = "years",
+                            y = input$area
+                          )
+    ) + geom_line(color = "orange") +
+      ggtitle("Change in Total Regional Arrivals by Region From 2008-2016") +
+      xlab("Year") +
+      ylab("Arrivals")
+    
+    region_plot2 <- ggplotly(region_plot)
+    region_plot2
+  })
   
-})
-}
+  output$country_time <- renderPlotly({
+    country_plot <- ggplot(countries,
+                           aes_string(
+                             x = "year",
+                             y = input$country
+                           )
+    ) + geom_line(color = "purple") +
+      ggtitle("Change in Total Arrivals by Country From 2008-2016") +
+      xlab("Year") +
+      ylab("Arrivals")
+    
+    country_plot2 <- ggplotly(country_plot)
+    country_plot2
+  })
+  
+  output$ceilings <- renderPlot({
+    ggplot(caps, aes(x = Year)) +
+      geom_line(aes(y= Cap, colour= "Cap")) +
+      geom_line(aes(y= Admitted, colour= "Admitted")) +
+      geom_point(aes (y = Cap)) +
+      geom_point(aes (y = Admitted)) +
+      scale_y_continuous("Total Numbers of People",
+                         breaks= seq(56000, 86000, 2000)) +
+      ggtitle("Refugee Admissions Ceiling vs Total Refugee Admissions") +
+      scale_color_manual(name = "Total Numbers", values= c("Cap" = "red",
+                                                           "Admitted" = "green"),
+                         labels = c("Admitted", "Ceiling Cap"))
+    
+  })
 
 #UI
 
@@ -468,13 +473,14 @@ The ceiling was set to its highest over the eight years during the last year of
           label = "Country", 
           choices = colnames(countries[,-1]), 
           selected = "Afghanistan"
+        )
         ),
-        mainpanel(
-          plotOutput("country_time"),
+        mainPanel(
+          plotlyOutput("country_time"),
           p("This plot provides information about the total arrivals of a selected
      country during the Obama administration.")
         )
-        )
+        
     ),
     sidebarLayout(
       sidebarPanel(
@@ -489,10 +495,13 @@ The ceiling was set to its highest over the eight years during the last year of
         )
       ),
     mainPanel(
-      plotOutput("region_time"),
+      plotlyOutput("region_time"),
       p("This plot displays the change in total arrivals over time of the
          selected region. The time frame is from 2008 to 2016, which marks the 
-                 election of President Obama and the end of his two terms.")
+                 election of President Obama and the end of his two terms. Based 
+        on this plot, we discovered that Africa had an exponential increase
+        in the amount of refugees arriving in the United States in the last few
+        years of Obama's term.")
       )
     
   )
