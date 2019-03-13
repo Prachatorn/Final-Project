@@ -163,7 +163,7 @@ world_map <- function(asylums, years) {
       add_trace(
         z = ~get(paste0("year_", years)),
         color = ~get(paste0("year_", years)),
-        colors = "Reds",
+        colors = c("yellow", "red"),
         text = ~Country,
         locations = ~code,
         marker = list(
@@ -190,7 +190,7 @@ world_map <- function(asylums, years) {
       add_trace(
         z = ~get(paste0("year_", years)),
         color = ~get(paste0("year_", years)),
-        colors = "Blues",
+        colors = c("green", "blue"),
         text = ~Country,
         locations = ~code,
         marker = list(
@@ -219,7 +219,7 @@ world_map <- function(asylums, years) {
     add_trace(
       z = ~get(paste0("year_", years)),
       color = ~get(paste0("year_", years)),
-      colors = "Greens",
+      colors = c("orange", "purple"),
       text = ~Country,
       locations = ~code,
       marker = list(
