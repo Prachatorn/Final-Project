@@ -7,17 +7,18 @@ asylum_tab <- tabPanel(
     sidebarPanel(
       #1st chart and widget combination choosing country
       selectInput(
-        "country", 
+        "select_country", 
         label = h3("Affirmative Asylum - Select Country"),
         choices = gather_affirm$Country,
         selected = 1
       ),
       #2nd chart and widget combination choosing country
       selectInput(
-        "select_country", 
+        "select_country2", 
         label = h3("Defensive Asylum - Select Country"),
         choices = gather_defens$Country,
-        selected = 1)
+        selected = 1
+      )
     ),
     #specify main panel
     mainPanel(
@@ -27,7 +28,7 @@ asylum_tab <- tabPanel(
         Affirmative asylum cases are yet to begin the deportation process in the courts. 
         Defensive asylum cases begin after affirmative asylum cases are denied, and take place in an immigration court. 
         The data below shows affirmative and defensive asylum cases from 2008 - 2016."),
-      plotOutput("plot"),
+      plotOutput("affirmative"),
       plotOutput("defensive"),
       p("When comparing affirmative and defensive asylum data from we noticed a pattern for many countries, 
         following a surge of affirmative asylum cases, defensive asylum cases will rise, usually in the year following the affirmative asylum rise. 

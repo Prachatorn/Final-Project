@@ -5,9 +5,9 @@ library(dplyr)
 
 # Load in dataset
 
-affirmative_asylum <- read.csv("Refugees/country_affirmative_asylum.csv",
+affirmative_asylum <- read.csv("Refugees/country_affirmative_asylum_code.csv",
   stringsAsFactors = F)
-defensive_asylum <- read.csv("Refugees/country_defensive_asylum.csv",
+defensive_asylum <- read.csv("Refugees/country_defensive_asylum_code.csv",
                              stringsAsFactors = F)
 country_arrival <- read.csv("Refugees/country_arrivals_2.csv",
                             stringsAsFactors = F)
