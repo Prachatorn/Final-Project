@@ -5,8 +5,8 @@ map_tabs <-
       sidebarPanel(
         selectInput(
           "asylums",
-          label = "Choose An Asylum",
-          choices = list("Affirmative" = "Affirmative",
+          label = "Choose A Map",
+          choices = list("Arrivals" = "Arrivals", "Affirmative" = "Affirmative",
                          "Defensive" = "Defensive")
         ),
         selectInput(
