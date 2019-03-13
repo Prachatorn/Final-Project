@@ -36,3 +36,6 @@ We will use `shiny, ggplot2, tidyr, maps, and leaflet.`
 
 We anticipate challenges in making our functions to render plots with data selected by the user. For example, we’d like to make a chart that shows statistics of a given country and given year when the user selects them from a drop down menu. We will probably challenge.
 
+Link to our final project:
+
+https://prachatornjoe.shinyapps.io/Final-Project/

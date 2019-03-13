@@ -10,9 +10,9 @@ source("tabs/asylum_tab.R")
 
 shinyUI(
   navbarPage(
-      "Refugee Statistics during the Obama Administration",
+    "Refugee Statistics during the Obama Administration",
+    theme = shinytheme("united"),
     overview,
-  theme = shinytheme("united"),
     general_stats,
     arrival_attributes,
     asylum_tab,
