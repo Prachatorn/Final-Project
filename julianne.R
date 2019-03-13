@@ -15,7 +15,7 @@ caps <- data.frame("Year" = c(2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
                    "Admitted" = c(60107, 74602, 73293, 56384, 58179, 69909, 
                                   69975, 69920, 84989))
 
-  
+   
 # Regions 
 regional_arrivals <- read.csv("Refugees/regional_arrivals.csv",
                               stringsAsFactors = F)
