@@ -1,6 +1,6 @@
 map_tabs <- 
   tabPanel(
-    "World Maps",
+    "World Maps Of Immigration And Asylum Seekers",
     sidebarLayout(
       sidebarPanel(
         selectInput(
@@ -19,7 +19,14 @@ map_tabs <-
         )
       ),
       mainPanel(
-        plotlyOutput("maps")
+        plotlyOutput("maps"),
+        p("Arrival - This takes in a count of immigrants from
+          around the world arriving to the US."),
+        p("Affirmative Asylum - This takes in the count of immigrants
+          being allowed asylum by the United States government. 
+          Affirmative asylums refers to immigrants living in the United 
+          States, and are rarely detained by U.S. Immigrantion and Customs 
+          Enforcement (U.S. Citizenship And Immigration Services).")
       )
     )
   )
