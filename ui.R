@@ -8,7 +8,9 @@ library(tidyr)
 library(shinythemes)
 source("tabs/map_tabs.R")
 source("tabs/julianne_general_stats.R")
+source("julianne.R")
 source("tabs/overview.R")
+source("hekma_charts.R")
 
 shinyUI(
   
@@ -17,6 +19,7 @@ shinyUI(
     "Refugee Statistics during the Obama Administration",
     overview,
     julianne_general_stats,
+    page_two,
     map_tabs
 
   )

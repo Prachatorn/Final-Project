@@ -1,5 +1,6 @@
 overview <- tabPanel(
-  h2("Interested in Learning the Real Facts About Refugee Statistics Under the
+  "Overview",
+  h1("Interested in Learning the Real Facts About Refugee Statistics Under the
      Obama Administration?"),
   p("Welcome to our final project homepage. We wanted to study immigration in 
     the United States in order to bring awareness to real data during a time 
