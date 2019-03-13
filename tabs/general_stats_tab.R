@@ -1,4 +1,7 @@
-julianne_general_stats <- tabPanel(
+# Sourcing in necessary files
+source("countries.R")
+
+general_stats <- tabPanel(
   "Changes Over the Obama Era",
   
   sidebarLayout(

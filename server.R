@@ -4,10 +4,9 @@ library(ggplot2)
 library(shiny)
 library(tidyr)
 library(rsconnect)
-source("regionals.R")
 source("countries.R")
+source("regional_and_caps.R")
 source("world_map.R")
-source("julianne.R")
 
 # Read arrival age data
 arrival_age_data <- read.csv("Refugees/arrival_age/combined_age.csv",
