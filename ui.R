@@ -12,7 +12,7 @@ shinyUI(
     "Refugee Statistics during the Obama Administration",
     overview,
     general_stats,
-    page_two,
+    arrival_attributes,
     map_tabs
   )
 )

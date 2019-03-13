@@ -1,6 +1,6 @@
 # Refugee Arrival Charts
 
-page_two <- tabPanel(
+arrival_attributes <- tabPanel(
   "Refugee Arrivals",
   sidebarLayout(
     sidebarPanel(
