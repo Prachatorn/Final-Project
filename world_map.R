@@ -9,6 +9,8 @@ affirmative_asylum <- read.csv("Refugees/country_affirmative_asylum.csv",
   stringsAsFactors = F)
 defensive_asylum <- read.csv("Refugees/country_defensive_asylum.csv",
                              stringsAsFactors = F)
+country_arrival <- read.csv("Refugees/country_arrivals_2.csv",
+                            stringsAsFactors = F)
 
 # Working on the map for affirmative asylumn for immigrants coming to the
 # United States.
@@ -62,40 +64,6 @@ affirmative_country <- affirmative_country %>%
 
 affirmative_country <- data.frame(affirmative_country)
 
-# https://plot.ly/r/choropleth-maps/#world-choropleth-map
-
-affirmative_map <- function(years) {
-  affirm_map <- plot_geo(affirmative_country) %>%
-    add_trace(
-      z = ~get(paste0("year_", years)),
-      color = ~get(paste0("year_", years)),
-      colors = "Reds",
-      text = ~country,
-      locations = ~code,
-      marker = list(
-        line = list(
-          color = toRGB("black"),
-          width = 0.5
-        )
-      )
-    ) %>%
-    colorbar(
-      title = "# Of People"
-    ) %>%
-    layout(
-      title = "Affirmative Asylums to the US From Around The World",
-      geo = list(
-        showframe = FALSE,
-        showcoastlines = TRUE,
-        projection = list(type = "Mercator")
-      )
-    )
-  return(affirm_map)
-}
-
-affirmative_map(2007)
-
-
 # Working on the map for defensive asylumn for immigrants coming to the
 # United States.
 
@@ -147,12 +115,123 @@ defensive_country <- defensive_country %>%
 
 defensive_country <- data.frame(defensive_country)
 
-defensive_countries <- function(years) {
-  defensive_map <- plot_geo(defensive_country) %>%
+# https://plot.ly/r/choropleth-maps/#world-choropleth-map
+
+world_map <- function(asylums, years) {
+  if (asylums == "Affirmative") {
+    affirm_map <- plot_geo(affirmative_country) %>%
+      add_trace(
+        z = ~get(paste0("year_", years)),
+        color = ~get(paste0("year_", years)),
+        colors = "Reds",
+        text = ~country,
+        locations = ~code,
+        marker = list(
+          line = list(
+            color = toRGB("black"),
+            width = 0.5
+          )
+        )
+      ) %>%
+      colorbar(
+        title = "# Of People"
+      ) %>%
+      layout(
+        title = "Affirmative Asylums to the US From Around The World",
+        geo = list(
+          showframe = FALSE,
+          showcoastlines = TRUE,
+          projection = list(type = "Mercator")
+        )
+      )
+    return(affirm_map)
+  } else {
+    defensive_map <- plot_geo(defensive_country) %>%
+      add_trace(
+        z = ~get(paste0("year_", years)),
+        color = ~get(paste0("year_", years)),
+        colors = "Blues",
+        text = ~country,
+        locations = ~code,
+        marker = list(
+          line = list(
+          color = toRGB("black"),
+          width = 0.5
+        )
+      )
+    ) %>%
+      colorbar(
+        title = "# Of People"
+      ) %>%
+      layout(
+        title = "Defensive Asylums to the US From Around The World",
+        geo = list(
+        showframe = FALSE,
+        showcoastlines = TRUE,
+        projection = list(type = "Mercator")
+      )
+    )
+    return(defensive_map)
+  }
+}
+
+# Country Arrival Maps
+
+colnames(country_arrival)[colnames(country_arrival) ==
+                               "ï..Country"] <- "country"
+
+arrival <- country_arrival %>%
+  filter(CODE != "NA")
+
+arrival[arrival == "-"] <- 0
+arrival[arrival == "D"] <- 0
+arrival[arrival == "X"] <- 0
+arrival <- arrival %>%
+  rename_at(
+    vars(starts_with("X")),
+    funs(sub("X", "year_", .))
+  )
+
+arrival$year_2007 <- gsub(",", "", arrival$year_2007)
+arrival$year_2008 <- gsub(",", "", arrival$year_2008)
+arrival$year_2009 <- gsub(",", "", arrival$year_2009)
+arrival$year_2010 <- gsub(",", "", arrival$year_2010)
+arrival$year_2011 <- gsub(",", "", arrival$year_2011)
+arrival$year_2012 <- gsub(",", "", arrival$year_2012)
+arrival$year_2013 <- gsub(",", "", arrival$year_2013)
+arrival$year_2014 <- gsub(",", "", arrival$year_2014)
+arrival$year_2015 <- gsub(",", "", arrival$year_2015)
+arrival$year_2016 <- gsub(",", "", arrival$year_2016)
+
+country_arrival <- arrival %>%
+  select(
+    country
+  )
+
+suppressWarnings(num_arrival <- data.matrix(arrival[2:11]))
+country_arrival <- country_arrival %>%
+  mutate(
+    year_2007 = num_arrival[, 1],
+    year_2008 = num_arrival[, 2],
+    year_2009 = num_arrival[, 3],
+    year_2010 = num_arrival[, 4],
+    year_2011 = num_arrival[, 5],
+    year_2012 = num_arrival[, 6],
+    year_2013 = num_arrival[, 7],
+    year_2014 = num_arrival[, 8],
+    year_2015 = num_arrival[, 9],
+    year_2016 = num_arrival[, 10],
+    code = arrival[, 12]
+  )
+
+country_arrival <- data.frame(country_arrival)
+
+arrival_map <- function(years) {
+  map_arrival <- plot_geo(country_arrival) %>%
     add_trace(
       z = ~get(paste0("year_", years)),
       color = ~get(paste0("year_", years)),
-      colors = "Blues",
+      colors = "Greens",
       text = ~country,
       locations = ~code,
       marker = list(
@@ -166,15 +245,14 @@ defensive_countries <- function(years) {
       title = "# Of People"
     ) %>%
     layout(
-      title = "Defensive Asylums to the US From Around The World",
+      title = "Arriving Immigrants to the US From Different Countries",
       geo = list(
-      showframe = FALSE,
-      showcoastlines = TRUE,
-      projection = list(type = "Mercator")
+        showframe = FALSE,
+        showcoastlines = TRUE,
+        projection = list(type = "Mercator")
+      )
     )
-  )
-  return(defensive_map)
+  return(map_arrival)
 }
 
-defensive_countries(2007)
-
+arrival_map(2007)
