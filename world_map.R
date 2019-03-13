@@ -14,15 +14,6 @@ country_arrival <- read.csv("Refugees/country_arrivals_2.csv",
 
 # Working on the map for affirmative asylumn for immigrants coming to the
 # United States.
-colnames(affirmative_asylum)[1]
-
-if (colnames(affirmative_asylum)[1] == "ï..Country") {
-  colnames(affirmative_asylum)[colnames(affirmative_asylum) ==
-  "ï..Country"] <- "country"
-} else {
-  colnames(affirmative_asylum)[colnames(affirmative_asylum) ==
-                                 "Country"] <- "country"
-}
 
 affirmative <- affirmative_asylum %>%
   filter(code != "NA")
@@ -49,7 +40,7 @@ affirmative$year_2016 <- gsub(",", "", affirmative$year_2016)
 
 affirmative_country <- affirmative %>%
   select(
-    country
+    Country
   )
 
 suppressWarnings(num_affirmative <- data.matrix(affirmative[2:11]))
@@ -72,14 +63,6 @@ affirmative_country <- data.frame(affirmative_country)
 
 # Working on the map for defensive asylumn for immigrants coming to the
 # United States.
-
-if (colnames(defensive_asylum)[1] == "ï..Country") {
-  colnames(defensive_asylum)[colnames(defensive_asylum) ==
-                                 "ï..Country"] <- "country"
-} else {
-  colnames(defensive_asylum)[colnames(defensive_asylum) ==
-                                 "Country"] <- "country"
-}
 
 defensive <- defensive_asylum %>%
   filter(code != "NA")
@@ -106,7 +89,7 @@ defensive$year_2016 <- gsub(",", "", defensive$year_2016)
 
 defensive_country <- defensive %>%
   select(
-    country
+    Country
   )
 num_defensive <- data.matrix(defensive[2:11])
 defensive_country <- defensive_country %>%
@@ -127,14 +110,6 @@ defensive_country <- defensive_country %>%
 defensive_country <- data.frame(defensive_country)
 
 # Country Arrival Maps
-
-if (colnames(country_arrival)[1] == "ï..Country") {
-  colnames(country_arrival)[colnames(country_arrival) ==
-                                 "ï..Country"] <- "country"
-} else {
-  colnames(country_arrival)[colnames(country_arrival) ==
-                                 "Country"] <- "country"
-}
 
 arrival <- country_arrival %>%
   filter(CODE != "NA")
@@ -161,7 +136,7 @@ arrival$year_2016 <- gsub(",", "", arrival$year_2016)
 
 country_arrival <- arrival %>%
   select(
-    country
+    Country
   )
 
 suppressWarnings(num_arrival <- data.matrix(arrival[2:11]))
@@ -189,7 +164,7 @@ world_map <- function(asylums, years) {
         z = ~get(paste0("year_", years)),
         color = ~get(paste0("year_", years)),
         colors = "Reds",
-        text = ~country,
+        text = ~Country,
         locations = ~code,
         marker = list(
           line = list(
@@ -216,7 +191,7 @@ world_map <- function(asylums, years) {
         z = ~get(paste0("year_", years)),
         color = ~get(paste0("year_", years)),
         colors = "Blues",
-        text = ~country,
+        text = ~Country,
         locations = ~code,
         marker = list(
           line = list(
@@ -245,7 +220,7 @@ world_map <- function(asylums, years) {
       z = ~get(paste0("year_", years)),
       color = ~get(paste0("year_", years)),
       colors = "Greens",
-      text = ~country,
+      text = ~Country,
       locations = ~code,
       marker = list(
         line = list(
