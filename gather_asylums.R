@@ -7,14 +7,16 @@ library(tidyr)
 
 
 #Read in Country Affirmative Asylum Data
-affirmative <- read.csv("country_affirmative_asylum copy.csv", stringsAsFactors = FALSE)
+affirmative <- read.csv("Refugees/country_affirmative_asylum.csv", 
+                        stringsAsFactors = FALSE)
 
 #Make data frame from 2008 - 2016
 affirmative <- affirmative %>%
   select(Country, X2008, X2009, X2010, X2011, X2012, X2013, X2014, X2015, X2016)
 
 #Read in Country Defensive Asylum Data
-defensive <- read.csv("country_defensive_asylum.csv", stringsAsFactors = FALSE)
+defensive <- read.csv("Refugees/country_defensive_asylum.csv", 
+                      stringsAsFactors = FALSE)
 
 #Make data frame of 2008-2016
 defensive <- defensive %>%
@@ -50,33 +52,4 @@ gather_defens <-
   ) %>% 
   mutate(Year = stringr::str_replace(Year, "X", "") %>% as.numeric()) 
   gather_defens$Year <- as.character(gather_defens$Year)
-
-#Define shiny server
-shinyServer <- function(input, output){
- filtered_Data <- reactive({
-   filtered_D <- filter(gather_affirm, gather_affirm$Country == input$country)
-   })
-  
-filtered <- reactive({
-  filter <- filter(gather_defens, gather_defens$Country == input$select_country)
-  })
-
-
-#plot of Affrimative Asylum
-output$plot <- renderPlot({
-  ggplot(filtered_Data(), aes(x=Year,y = Value, fill = Value)) + geom_bar(stat = "identity") +
-    ggtitle("Affirmative Asylum") +
-    xlab("Year") +
-    ylab("Number of Affirmative Asylum Cases") +
-    theme_grey(base_size = 18)
-})
-#Plot defensice asylum graph
-output$defensive <- renderPlot({
-  ggplot(filtered(), aes(x=Year,y = Value, fill = Value)) + geom_bar(stat = "identity") +
-    ggtitle("Defensive Asylum") +
-    xlab("Year") +
-    ylab("Number of Defensive Asylum Cases") +
-    theme_grey(base_size = 18)
-})
-}
 

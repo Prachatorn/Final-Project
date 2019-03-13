@@ -15,7 +15,7 @@ arrival_attributes <- tabPanel(
                        "2014" = "year_2014", "2015" = "year_2015", 
                        "2016" = "year_2016")
       )
-      ),
+    ),
     mainPanel(
       plotOutput("age_chart"),
       p("This plot displays the...")

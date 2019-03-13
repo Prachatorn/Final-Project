@@ -5,6 +5,7 @@ library(shiny)
 library(tidyr)
 library(rsconnect)
 source("countries.R")
+source("gather_asylums.R")
 source("regional_and_caps.R")
 source("world_map.R")
 
@@ -206,6 +207,33 @@ server <- function(input, output) {
       
       chart4 <- ggplotly(chart_four)
       chart4
+    })
+    
+    #Marina
+    filtered_Data <- reactive({
+      filtered_D <- filter(gather_affirm, gather_affirm$Country == input$country)
+    })
+    
+    filtered <- reactive({
+      filter <- filter(gather_defens, gather_defens$Country == input$select_country)
+    })
+    
+    
+    #plot of Affrimative Asylum
+    output$plot <- renderPlot({
+      ggplot(filtered_Data(), aes(x=Year,y = Value, fill = Value)) + geom_bar(stat = "identity") +
+        ggtitle("Affirmative Asylum") +
+        xlab("Year") +
+        ylab("Number of Affirmative Asylum Cases") +
+        theme_grey(base_size = 18)
+    })
+    #Plot defensice asylum graph
+    output$defensive <- renderPlot({
+      ggplot(filtered(), aes(x=Year,y = Value, fill = Value)) + geom_bar(stat = "identity") +
+        ggtitle("Defensive Asylum") +
+        xlab("Year") +
+        ylab("Number of Defensive Asylum Cases") +
+        theme_grey(base_size = 18)
     })
 }
 

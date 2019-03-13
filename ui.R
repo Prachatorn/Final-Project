@@ -1,18 +1,21 @@
 # Load in packages and other files.
 library(shiny)
 library(shinythemes)
+library(plotly)
 source("tabs/map_tab.R")
 source("tabs/general_stats_tab.R")
 source("tabs/overview_tab.R")
 source("tabs/arrivals_tab.R")
+source("tabs/asylum_tab.R")
 
 shinyUI(
   navbarPage(
-    theme = shinytheme("united"),
-    "Refugee Statistics during the Obama Administration",
+      "Refugee Statistics during the Obama Administration",
     overview,
+  theme = shinytheme("united"),
     general_stats,
     arrival_attributes,
+    asylum_tab,
     map_tabs
   )
 )
