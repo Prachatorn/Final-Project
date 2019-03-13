@@ -16,9 +16,9 @@ country_arrival <- read.csv("Refugees/country_arrivals_2.csv",
 # United States.
 colnames(affirmative_asylum)[1]
 
-if (colnames(affirmative_asylum)[1] == "ï..Country") {
+if (colnames(affirmative_asylum)[1] == "a..Country") {
   colnames(affirmative_asylum)[colnames(affirmative_asylum) ==
-  "ï..Country"] <- "country"
+  "a..Country"] <- "country"
 } else {
   colnames(affirmative_asylum)[colnames(affirmative_asylum) ==
                                  "Country"] <- "country"
@@ -73,9 +73,9 @@ affirmative_country <- data.frame(affirmative_country)
 # Working on the map for defensive asylumn for immigrants coming to the
 # United States.
 
-if (colnames(defensive_asylum)[1] == "ï..Country") {
+if (colnames(defensive_asylum)[1] == "?..Country") {
   colnames(defensive_asylum)[colnames(defensive_asylum) ==
-                                 "ï..Country"] <- "country"
+                                 "?..Country"] <- "country"
 } else {
   colnames(defensive_asylum)[colnames(defensive_asylum) ==
                                  "Country"] <- "country"
@@ -128,9 +128,9 @@ defensive_country <- data.frame(defensive_country)
 
 # Country Arrival Maps
 
-if (colnames(country_arrival)[1] == "ï..Country") {
+if (colnames(country_arrival)[1] == "?..Country") {
   colnames(country_arrival)[colnames(country_arrival) ==
-                                 "ï..Country"] <- "country"
+                                 "?..Country"] <- "country"
 } else {
   colnames(country_arrival)[colnames(country_arrival) ==
                                  "Country"] <- "country"
