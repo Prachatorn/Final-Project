@@ -14,7 +14,7 @@ shinyUI(
     theme = shinytheme("united"),
     overview,
     general_stats,
-    arrival_attributes,
+    arrival_characteristics,
     asylum_tab,
     map_tabs
   )

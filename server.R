@@ -73,7 +73,6 @@ server <- function(input, output) {
     })
     
     #Hekma
-    # Arrival Age Chart
     output$age_chart <- renderPlot({
       arrival_age <- arrival_age_data %>%
         filter(character != "Total") %>% 
@@ -98,7 +97,7 @@ server <- function(input, output) {
             y = "character",
             width = 5
           )
-        )  +
+        )+
         geom_point(
           mapping = aes_string(
             x = input$year_age,
@@ -122,7 +121,6 @@ server <- function(input, output) {
       chart_two
       
     })
-    
     # Arrival Gender Chart
     output$gender_chart <- renderPlotly({
       arrival_f_m <- arrival_gender_data %>% 
@@ -158,14 +156,12 @@ server <- function(input, output) {
         theme(
           axis.text.x = element_text(angle = 60, hjust = 1),
           legend.title = element_blank(),
-          legend.position = "none", 
-          axis.title.x = element_blank()) + 
+          legend.position = "none") + 
         coord_flip()
       
       chart3 <- ggplotly(chart_three)
       chart3
     })
-    
     # Arrival Marital Status Chart
     output$martial_status_chart <- renderPlotly({
       marital_status_data <- arrival_marital_status %>% 
@@ -184,12 +180,12 @@ server <- function(input, output) {
                year_2013, year_2014,
                year_2015, year_2016)
       
-      marital_status_data <-  marital_status_data%>%
+      marital_status_data <-marital_status_data%>%
         mutate(color = c("brown2","yellowgreen", "seagreen",
                          "deepskyblue2", "magenta1"
         ))
       
-      marital_status_data[is.na(marital_status_data)] <- 0
+      
       chart_four <- ggplot(data = marital_status_data) +
         geom_col(
           mapping = aes_string(
@@ -202,8 +198,7 @@ server <- function(input, output) {
           title = paste0("Total number of Refugees Arrived by Marital Status vs. ", 
                          gsub("year_", "", input$year_marital_status))) +
         theme(
-          axis.text.x = element_text(angle = 60, hjust = 1), legend.position = "none",
-          axis.title.x = element_blank()) + 
+          axis.text.x = element_text(angle = 60, hjust = 1), legend.position = "none") + 
         coord_flip()
       
       chart4 <- ggplotly(chart_four)

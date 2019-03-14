@@ -1,6 +1,6 @@
 # Refugee Arrival Charts
 
-arrival_attributes <- tabPanel(
+arrival_characteristics <- tabPanel(
   "Refugee Arrivals",
   sidebarLayout(
     sidebarPanel(
@@ -14,8 +14,9 @@ arrival_attributes <- tabPanel(
                        "2012" = "year_2012", "2013" = "year_2013",
                        "2014" = "year_2014", "2015" = "year_2015", 
                        "2016" = "year_2016")
+        # selected = ""
       )
-    ),
+      ),
     mainPanel(
       plotOutput("age_chart"),
       p("This plot displays the...")
@@ -33,17 +34,18 @@ sidebarLayout(
                      "2012" = "year_2012", "2013" = "year_2013",
                      "2014" = "year_2014", "2015" = "year_2015", 
                      "2016" = "year_2016")
+      # selected = ""
     )
     ),
   mainPanel(
-    plotOutput("gender_chart"),
+    plotlyOutput("gender_chart"),
     p("This plot displays the...")
   )
 ),
 sidebarLayout(
   sidebarPanel(
     helpText("Choose a year to see the number of arrivals with a certain
-             Martial Status in the given year"),
+Martial Status in the given year"),
     selectInput(
       "year_marital_status", 
       label = "Year", 
@@ -52,11 +54,12 @@ sidebarLayout(
                      "2012" = "year_2012", "2013" = "year_2013",
                      "2014" = "year_2014", "2015" = "year_2015", 
                      "2016" = "year_2016")
+      # selected = ""
     )
   ),
   mainPanel(
-    plotOutput("martial_status_chart"),
+    plotlyOutput("martial_status_chart"),
     p("This plot displays the...")
   )
- )
+)
 )
