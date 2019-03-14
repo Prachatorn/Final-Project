@@ -177,7 +177,7 @@ world_map <- function(asylums, years) {
         title = "# Of People"
       ) %>%
       layout(
-        title = "Affirmative Asylums to the US From Around The World",
+        title = "Affirmative Asylum Seekers To The US From Around The World",
         geo = list(
           showframe = FALSE,
           showcoastlines = TRUE,
@@ -204,7 +204,7 @@ world_map <- function(asylums, years) {
         title = "# Of People"
       ) %>%
       layout(
-        title = "Defensive Asylums to the US From Around The World",
+        title = "Defensive Asylum Seekers To The US From Around The World",
         geo = list(
         showframe = FALSE,
         showcoastlines = TRUE,
@@ -233,7 +233,7 @@ world_map <- function(asylums, years) {
       title = "# Of People"
     ) %>%
     layout(
-      title = "Arriving Immigrants to the US From Different Countries",
+      title = "Arriving Refugees To The US From Different Countries",
       geo = list(
         showframe = FALSE,
         showcoastlines = TRUE,

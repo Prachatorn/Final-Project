@@ -1,4 +1,5 @@
-# Load in packages and other files.
+# Load in packages and source in other files from the tab folder.
+
 library(shiny)
 library(shinythemes)
 library(plotly)
