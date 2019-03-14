@@ -246,6 +246,8 @@ server <- function(input, output) {
                          "deepskyblue2", "magenta1"
         ))
       
+      marital_status_data[is.na(marital_status_data)] <- 0
+      
       chart_four <- ggplot(data = marital_status_data) +
         geom_col(
           mapping = aes_string(

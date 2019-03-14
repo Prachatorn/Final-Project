@@ -1,3 +1,7 @@
+# Load in packages
+
+library(tidyr)
+
 # This manipulates the asylums dataframe to make it easier to use for our
 # graphs.
 
