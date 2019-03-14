@@ -3,6 +3,8 @@ source("gather_asylums.R")
 asylum_tab <- tabPanel(
   "Asylum Info",
   titlePanel("Affirmative and Defensive"),
+  tabPanel(
+    "Hello",
   sidebarLayout(
     sidebarPanel(
       #1st chart and widget combination choosing country
@@ -39,3 +41,4 @@ asylum_tab <- tabPanel(
       )
     )
   )
+)
