@@ -163,6 +163,7 @@ server <- function(input, output) {
         coord_flip()
       
       chart3 <- ggplotly(chart_three)
+      chart3
     })
     
     # Arrival Marital Status Chart
